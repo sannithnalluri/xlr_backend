@@ -5,10 +5,10 @@ const jwt = require("jsonwebtoken");
 const SECRET_KEY = "sannithisverygood"; // Ideally use process.env.SECRET_KEY
 
 const signup = async (req, res) => {
-    const { username, password, emailid } = req.body;
+    const { username, password, email } = req.body;
     console.log(req.body);
     try {
-        const existingUser = await User.findOne({ where: { username } });
+        const existingUser = await User.findOne({ where: { email } });
 
         if (existingUser) {
             return res.status(400).json({ error: "User already exists" });
@@ -19,7 +19,7 @@ const signup = async (req, res) => {
         const user = await User.create({
             username,
             password: hashedPassword,
-            emailid,
+            email,
         });
 
         const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, {
