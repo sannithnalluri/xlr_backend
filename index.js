@@ -17,8 +17,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-// Sync DB and start server
-db.sequelize.sync({ force: true })
+db.sequelize.sync({})
   .then(() => {
     console.log('Database synced');
     app.listen(port, () => {
