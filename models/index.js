@@ -17,5 +17,6 @@ db.sequelize = sequelize;
 
 // Import models
 db.User = require('./userModel')(sequelize, Sequelize);
+db.passenger = require('./PassengerModel')(sequelize, Sequelize);
 
 module.exports = db;
